@@ -1,3 +1,5 @@
+import sys
+
 def count_words(text):
     words = text.split()
     count = 0
@@ -26,7 +28,14 @@ def print_report(words, letters):
     print("--- End report ---")
 
 def main():
-    with open("books/frankenstein.txt") as f:
+    try:
+        book = sys.argv[1]
+    except Exception:
+        print("Please provide the name of the book inside /books")
+        print("Ex: frankenstein")
+        exit()
+    path = "books/" + book + ".txt"
+    with open(path) as f:
         file_text = f.read()
     word_count = count_words(file_text)
     letter_count = count_letters(file_text)
